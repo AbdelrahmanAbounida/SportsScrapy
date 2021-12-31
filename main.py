@@ -3,7 +3,6 @@ import pandas as pd
 #from postscrape.postscrape.spiders.NFL import NFL
 
 import pandas as pd
-import re
 
 data = pd.read_csv("postscrape/postscrape/spiders/Newplayers.csv")
 d = data.Year
@@ -11,15 +10,12 @@ d = data.Year
 x = data
 for i,l in enumerate(d):
     try:
-        lis = list(set(re.findall('....',l.replace(',',''))))
-        if('0000' in lis):
-            lis.remove('0000')
-        x.iloc[i, 1] = lis
+        x.iloc[i,1] = l.split(',')
     except:
-        x.drop(labels=i,axis=0,inplace=False)
+        x.iloc[i,1] = " "
 
-x.to_csv('pretty.csv',index = False, header=True)
-
+print(x.iloc[:,1])
+x.to_csv ('pretty.csv', index = False, header=True)
 
 
 
