@@ -40,7 +40,7 @@ class NFL(CrawlSpider):
         yield {
             "playername": response.xpath('//h1[@class="nfl-c-player-header__title"]/text()').get(),
             "Year": response.xpath('//*[@id="main-content"]/section[3]/div/div[4]/div/div[2]/table/tbody/tr/td[1]/text()').getall().split(','),
-            "Tems Played for": list(set(response.xpath('//table[@summary="Career Stats"]/tbody/tr/td[2]/text()').getall())),
+            "Tems Played for": list(set(response.xpath('//table[@summary="Career Stats"]/tbody/tr/td[2]/text()').getall())) ,
             "G": response.xpath('//table[@summary="Career Stats"]/tbody/tr/td[3]/text()').getall(),
             "GS": response.xpath('//table[@summary="Career Stats"]/tbody/tr/td[4]/text()').getall()
         }
